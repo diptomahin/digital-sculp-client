@@ -2,9 +2,13 @@ import { Label, TextInput } from 'flowbite-react';
 import Banner from '../Home/HomeComonents/Banner';
 
 import { Button } from 'flowbite-react';
+import { Helmet } from 'react-helmet-async';
 const ContactUs = () => {
     return (
         <div>
+            <Helmet>
+                <title>Sculp || Contact </title>
+            </Helmet>
             <Banner></Banner>
             <div className='w-11/12 mx-auto my-20   bg-[#D4F6C8] p-10 rounded-lg'>
                 <h1 className="text-3xl text-center mb-5 font-bold border-[#FFE074] border-x-2 py-5 bg-[#D4F6C8] border-y-4">Contact US</h1>
