@@ -28,7 +28,7 @@ const NavBar = () => {
     }}>Contact Us</NavLink></li>
     </>
     return (
-        <Navbar fluid rounded className='bg-[#D4F6C8] py-3'>
+        <Navbar fluid rounded className='bg-[#D4F6C8] py-3 fixed z-10 w-full'>
         <Navbar.Brand href="/">
           <img src="https://i.ibb.co/sjbfHyD/Digital-Sculp-1-removebg-preview.png" className="mr-3 h-6 sm:h-9" alt="Digital Sculp" />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Digital Sculp</span>

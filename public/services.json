@@ -1,0 +1,80 @@
+[
+    {
+      "_id":"01",
+      "name": "Search Engine Optimization (SEO)",
+      "description": "Optimize your online presence for search engines.",
+      "features": [
+        "Keyword research",
+        "On-page and off-page optimization",
+        "Link building",
+        "SEO analytics"
+      ],
+      "prizes": "$1,500 per month",
+      "image": "https://i.ibb.co/K6cgLpp/what-does-seo-stand-for.webp"
+    },
+    {
+      "_id":"02",
+      "name": "Social Media Marketing",
+      "description": "Enhance your brand visibility and engagement on social platforms.",
+      "features": [
+        "Social media strategy",
+        "Content creation",
+        "Community management",
+        "Social media analytics"
+      ],
+      "prizes": "$2,000 per month",
+      "image": "https://i.ibb.co/7QHGqfS/smm.jpg"
+    },
+    {
+      "_id":"03",
+      "name": "Pay-Per-Click (PPC) Advertising",
+      "description": "Drive targeted traffic to your website through paid advertising.",
+      "features": [
+        "Ad campaign management",
+        "Keyword targeting",
+        "Ad performance analysis",
+        "Budget optimization"
+      ],
+      "prizes": "Custom pricing based on ad spend",
+      "image": "https://i.ibb.co/xzDs5Wb/OIP.jpg"
+    },
+    {
+      "_id":"04",
+      "name": "Content Marketing",
+      "description": "Create and distribute valuable content to attract and retain customers.",
+      "features": [
+        "Content strategy",
+        "Blog writing",
+        "Infographics and visuals",
+        "Content performance tracking"
+      ],
+      "prizes": "$1,200 per month",
+      "image": "https://i.ibb.co/tY465kq/download-1.png"
+    },
+    {
+      "_id":"05",
+      "name": "Email Marketing",
+      "description": "Build and nurture relationships with your audience through email campaigns.",
+      "features": [
+        "Email campaign design",
+        "Automation workflows",
+        "Segmentation",
+        "Analytics and reporting"
+      ],
+      "prizes": "$800 per month",
+      "image": "https://i.ibb.co/zmxG3J8/em.jpg"
+    },
+    {
+      "_id":"06",
+      "name": "Website Design and Development",
+      "description": "Create visually appealing and functional websites for your business.",
+      "features": [
+        "Custom website design",
+        "Responsive development",
+        "E-commerce integration",
+        "Website maintenance"
+      ],
+      "prizes": "Starting at $3,000",
+      "image": "https://i.ibb.co/7kdQwxj/download.jpg"
+    }
+  ]
