@@ -22,8 +22,8 @@ const Register = () => {
         const password = form.get("password")
         const photoUrl = form.get("photoUrl")
 
-        const user = { displayName, userRole, email, password, photoUrl };
-        console.log(user)
+        const loggedUser = { displayName, userRole, email, password, photoUrl };
+        console.log(loggedUser)
         setErrorMessage('')
 
         // /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/
@@ -43,7 +43,7 @@ const Register = () => {
 
         createUser(email, password)
         .then(result => {
-          console.log(result.user)
+        console.log(result.user)
         })
         .catch((error) => {
           console.log(error.message);

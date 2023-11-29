@@ -1,8 +1,16 @@
 import { Button, Card, Label, TextInput } from 'flowbite-react';
+import { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProvider';
+import { FaGoogle } from "react-icons/fa6";
 
 const Login = () => {
+  const { signIn,   handleGoogleSignIn } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState('');
+
     const handleLogin=e=>{
       e.preventDefault();
 
@@ -10,6 +18,22 @@ const Login = () => {
       const email = form.get("email")
       const password = form.get("password")
       console.log(email,password)
+      setErrorMessage('');
+
+
+        signIn(email, password)
+            .then(result => {
+                console.log(result.user)
+                navigate(location?.state ? location.state : '/');
+            })
+            .catch(error => {
+                console.log(error.message);
+                setErrorMessage(error.message);
+            })
+    }
+
+    const handleGoogle=()=>{
+      handleGoogleSignIn()
     }
     return (
        <div className='py-32 mx-auto'>
@@ -31,8 +55,17 @@ const Login = () => {
             </div>
             <TextInput id="password1" name='password' placeholder='Your Password' type="password" required />
           </div>
+          {
+                errorMessage ?
+                  <div className="my-3 ">
+                    <p className="text-red-500 text-sm">{errorMessage}</p>
+                  </div>
+                  :
+                  <div></div>
+          }
           <Button type="submit">Login</Button>
         </form>
+        <Button onClick={handleGoogle}><FaGoogle/> Login with Google</Button>
         <p>New here?? <span className='text-blue-600'><Link to='/register'>Register</Link></span></p>
       </Card>
        </div>
