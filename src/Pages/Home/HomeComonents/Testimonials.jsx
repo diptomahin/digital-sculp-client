@@ -9,14 +9,18 @@ import { useEffect, useState } from 'react';
 import { Rating } from '@smastrom/react-rating'
 
 import '@smastrom/react-rating/style.css'
+import useAxios from '../../../Hooks/UseAxios';
+import { useQuery } from '@tanstack/react-query';
 
 const Testimonials = () => {
-    const [testimonials, setTestimonials] = useState([]);
-    useEffect(() => {
-        fetch('testimonials.json')
-            .then(res => res.json())
-            .then(data => setTestimonials(data))
-    }, [])
+    const axiosPublic = useAxios();
+    const { data: testimonials = []} = useQuery({
+        queryKey: ['testimonials'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/testimonials');
+            return res.data;
+        }
+    })
     console.log(testimonials)
     return (
         <div className='text-center'>

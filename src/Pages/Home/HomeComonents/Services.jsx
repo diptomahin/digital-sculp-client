@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import ServiceCard from "../../../components/serviceCard";
+import useAxios from "../../../Hooks/UseAxios";
 
 const Services = () => {
-    const [services, setServices] = useState([]);
-    useEffect(()=>{
-        fetch('services.json')
-        .then(res=> res.json())
-        .then(data=> setServices(data))
-    },[])
+    const axiosPublic = useAxios();
+    const { data: services = []} = useQuery({
+        queryKey: ['services'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/services');
+            return res.data;
+        }
+    })
     return (
        <div className="text-center mt-10 font-bold">
         <h1 className="text-3xl border-[#FFE074] border-x-2 py-5 bg-[#D4F6C8] border-y-4">Our Services</h1>

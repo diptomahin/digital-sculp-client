@@ -1,17 +1,19 @@
 import { Button, Card, Label, Select, TextInput } from 'flowbite-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { FileInput } from 'flowbite-react';
 import { Helmet } from 'react-helmet-async';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
+import useAxios from '../../Hooks/UseAxios';
+import Swal from 'sweetalert2';
 
 
 const Register = () => {
     const [errorMessage, setErrorMessage] = useState('');
-
+    const navigate = useNavigate();
     const { createUser } = useContext(AuthContext)
-  
+    const axiosPublic = useAxios();
     const handleRegister = e => {
         e.preventDefault();
 
@@ -20,10 +22,9 @@ const Register = () => {
         const userRole = form.get("roles")
         const email = form.get("email")
         const password = form.get("password")
+        const bankAccount = form.get("bank")
+        const salary = form.get("salary")
         const photoUrl = form.get("photoUrl")
-
-        const loggedUser = { displayName, userRole, email, password, photoUrl };
-        console.log(loggedUser)
         setErrorMessage('')
 
         // /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/
@@ -41,14 +42,30 @@ const Register = () => {
             return;
         }
 
-        createUser(email, password)
-        .then(result => {
-        console.log(result.user)
-        })
-        .catch((error) => {
-          console.log(error.message);
-          setErrorMessage(error.message);
-        })
+        createUser(displayName, userRole, email, password, photoUrl,bankAccount,salary )
+            .then(() => {
+               const savedUser = {displayName, userRole, email, password, photoUrl,bankAccount,salary}
+
+               axiosPublic.post('/users', savedUser)
+               .then(res => {
+                   if (res.data.insertedId) {
+                       console.log('user added to the database')
+                       Swal.fire({
+                           position: 'top-end',
+                           icon: 'success',
+                           title: 'User created successfully.',
+                           showConfirmButton: false,
+                           timer: 1500
+                       });
+                       navigate('/');
+                   }
+               })
+
+            })
+            .catch((error) => {
+                console.log(error.message);
+                setErrorMessage(error.message);
+            })
     }
     return (
         <div className='py-32 mx-auto'>
@@ -59,32 +76,50 @@ const Register = () => {
                 <h1 className='text-3xl font-bold'>Register</h1>
 
                 <form onSubmit={handleRegister} className="flex flex-col gap-4 ">
-                    <div>
-                        <div className="mb-2 block">
-                            <Label htmlFor="displayName" value="Your Name" />
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                        <div>
+                            <div className="mb-2 block">
+                                <Label htmlFor="displayName" value="Your Name" />
+                            </div>
+                            <TextInput id="name" name='name' type="text" placeholder="Write your name" required />
                         </div>
-                        <TextInput id="name" name='name' type="text" placeholder="Write your name" required />
+                        <div className="max-w-md">
+                            <div className="mb-2 block">
+                                <Label htmlFor="roles" value="Select your role" />
+                            </div>
+                            <Select id="countries" name='roles' required>
+                                <option>Employee</option>
+                                <option>HR</option>
+                            </Select>
+                        </div>
                     </div>
-                    <div className="max-w-md">
-                        <div className="mb-2 block">
-                            <Label htmlFor="roles" value="Select your role" />
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                        <div>
+                            <div className="mb-2 block">
+                                <Label htmlFor="bankAccount" value="Bank_Account" />
+                            </div>
+                            <TextInput id="bank" name='bank' type="text" placeholder="Your Bank Account" required />
                         </div>
-                        <Select id="countries" name='roles' required>
-                            <option>Employee</option>
-                            <option>HR</option>
-                        </Select>
+                        <div>
+                            <div className="mb-2 block">
+                                <Label htmlFor="salary" value="salary" />
+                            </div>
+                            <TextInput id="salary" name='salary' type="text" placeholder="Your Salary" required />
+                        </div>
                     </div>
-                    <div>
-                        <div className="mb-2 block">
-                            <Label htmlFor="email1" value="Your email" />
+                    <div  className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                        <div>
+                            <div className="mb-2 block">
+                                <Label htmlFor="email1" value="Your email" />
+                            </div>
+                            <TextInput id="email1" name='email' type="email" placeholder="Your Email" required />
                         </div>
-                        <TextInput id="email1" name='email' type="email" placeholder="Your Email" required />
-                    </div>
-                    <div>
-                        <div className="mb-2 block">
-                            <Label htmlFor="password1" value="Your password" />
+                        <div>
+                            <div className="mb-2 block">
+                                <Label htmlFor="password1" value="Your password" />
+                            </div>
+                            <TextInput id="password1" name='password' type="password" required />
                         </div>
-                        <TextInput id="password1" name='password' type="password" required />
                     </div>
                     <div id="fileUpload" className="max-w-md">
                         <div className="mb-2 block">
@@ -93,16 +128,16 @@ const Register = () => {
                         <FileInput id="file" name='photoUrl' helperText="A profile picture is useful to confirm your are logged into your account" />
                     </div>
                     {
-                errorMessage ?
-                  <div className="my-3 ">
-                    <p className="text-red-500 text-sm">{errorMessage}</p>
-                  </div>
-                  :
-                  <div></div>
-                 }
+                        errorMessage ?
+                            <div className="my-3 ">
+                                <p className="text-red-500 text-sm">{errorMessage}</p>
+                            </div>
+                            :
+                            <div></div>
+                    }
                     <Button type="submit">Login</Button>
                 </form>
-                <p>Have an account?? <span className='text-blue-600'><Link to='/login'>Login</Link></span></p>
+                <p>Have an account?? <span className='text-blue-600'><Link to='/login'>Register</Link></span></p>
             </Card>
         </div>
     );
