@@ -8,8 +8,8 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import useAxios from '../../Hooks/UseAxios';
 import Swal from 'sweetalert2';
 
-const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+// const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+// const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const Register = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
@@ -24,6 +24,7 @@ const Register = () => {
         const password = form.get("password")
         const bankAccount = form.get("bank")
         const salary = form.get("salary")
+        const isVerified = false 
         const photoUrl = form.get("photoUrl").name
         // const res = await axiosPublic.post(image_hosting_api, photoUrl, {
         //     headers: {
@@ -61,7 +62,7 @@ const Register = () => {
 
         createUser(email, password)
             .then(() => {
-                const savedUser = { displayName, userRole, email, password, photoUrl, bankAccount, salary }
+                const savedUser = { displayName, userRole, email, password, photoUrl, bankAccount, salary, isVerified}
 
                 axiosPublic.post('/users', savedUser)
                     .then(res => {

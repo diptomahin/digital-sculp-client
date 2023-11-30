@@ -1,6 +1,6 @@
-import { Table,  TextInput} from 'flowbite-react';
+import { Table} from 'flowbite-react';
 const Worktable = ({userWorks}) => {
-    console.log(userWorks)
+    // console.log(userWorks)
     return (
         <div className='my-10'>
               <Table striped>

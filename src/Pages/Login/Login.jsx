@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
-import { FaGoogle } from "react-icons/fa6";
+
 import Swal from 'sweetalert2';
 
 const Login = () => {
@@ -73,7 +73,6 @@ const Login = () => {
           }
           <Button type="submit">Login</Button>
         </form>
-        <Button onClick={handleGoogle}><FaGoogle/> Login with Google</Button>
         <p>New here?? <span className='text-blue-600'><Link to='/register'>Register</Link></span></p>
       </Card>
        </div>
