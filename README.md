@@ -1,8 +1,8 @@
-# React + Vite
+# DigitalSculp
+=> Is an employee management website 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* The website has conditional dashboard based on user role to the company.
+* Any one can register as an employee and can submit work in work sheet page where the works would be shown as table.
+* Hr ca verify a an employee and an see the progress made by the employees in their worksheet .
+* Admin can make an employee hr and also choose to fire him . if fired the employee can not login to the page
+* the website is responsive in all devices
