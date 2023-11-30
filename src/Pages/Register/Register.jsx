@@ -154,9 +154,9 @@ return (
                         :
                         <div></div>
                 }
-                <Button type="submit">Login</Button>
+                <Button type="submit">Register</Button>
             </form>
-            <p>Have an account?? <span className='text-blue-600'><Link to='/login'>Register</Link></span></p>
+            <p>Have an account?? <span className='text-blue-600'><Link to='/login'>Login</Link></span></p>
         </Card>
     </div>
 );

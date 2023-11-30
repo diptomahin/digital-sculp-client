@@ -81,6 +81,42 @@ const Dashboard = () => {
         </div>
         )
     }
+    else if (userRole === 'hr') {
+        return (
+            <div className="flex">
+            <div className="w-64 min-h-screen bg-[#D4F6C8] pt-10">
+                <ul className="menu p-4">
+                    <>
+                        <li><NavLink to='/dashboard/progress' style={({ isActive }) => {
+                            return {
+                                backgroundColor: isActive ? "#FFE074" : " ",
+                                padding: isActive ? "10px" : " ",
+                                borderRadius: isActive ? "5px" : ""
+
+                            }
+                        }}>Progress</NavLink></li>
+                    </>
+                </ul>
+                <ul className="menu p-4">
+                    <>
+                        <li><NavLink to='/' style={({ isActive }) => {
+                            return {
+                                backgroundColor: isActive ? "#FFE074" : " ",
+                                padding: isActive ? "10px" : " ",
+                                borderRadius: isActive ? "5px" : ""
+
+                            }
+                        }}>Home</NavLink></li>
+                    </>
+                </ul>
+            </div>
+            <div></div>
+            <div className="flex-1 p-8">
+                <Outlet></Outlet>
+            </div>
+        </div>
+        )
+    }
 };
 
 export default Dashboard;

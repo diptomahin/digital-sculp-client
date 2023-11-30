@@ -10,6 +10,7 @@ import DashboardHome from "../Pages/DashboardPages/DashboardHome";
 import WorkSheet from "../Pages/WorkSheet/WorkSheet";
 import PrivetRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import Progress from "../Pages/Progress/Progress";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
        path: "/dashboard/all-employee-list",
        element: <AdminRoute><AllEmployee></AllEmployee></AdminRoute>,
+      },
+      {
+       path: "/dashboard/progress",
+       element:<Progress></Progress>,
       },
       {
         path: "/dashboard/work-sheet",
