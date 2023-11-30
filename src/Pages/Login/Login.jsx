@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { FaGoogle } from "react-icons/fa6";
+import Swal from 'sweetalert2';
 
 const Login = () => {
   const { signIn,   handleGoogleSignIn } = useContext(AuthContext);
@@ -17,13 +18,20 @@ const Login = () => {
       const form = new FormData(e.currentTarget)
       const email = form.get("email")
       const password = form.get("password")
-      console.log(email,password)
+
       setErrorMessage('');
 
 
         signIn(email, password)
             .then(result => {
                 console.log(result.user)
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Logged In successfully.',
+                  showConfirmButton: false,
+                  timer: 1500
+              })
                 navigate(location?.state ? location.state : '/');
             })
             .catch(error => {

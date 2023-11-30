@@ -3,15 +3,27 @@ import { Link, NavLink } from 'react-router-dom';
 import { Button } from 'flowbite-react';
 import { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
+import Swal from 'sweetalert2';
+import UseLoggedUser from '../../Hooks/UseLoggedUser';
+import { Spinner } from 'flowbite-react';
 
 
 const NavBar = () => {
  
   const { user, logOut} = useContext(AuthContext);
-
+  const {savedUser, userLoading} = UseLoggedUser()
+  console.log(savedUser)
   const handleSignOut = () => {
       logOut()
-          .then()
+          .then(
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Logged out successfully.',
+              showConfirmButton: false,
+              timer: 1500
+          })
+          )
           .catch()
   }
 
@@ -42,6 +54,9 @@ const NavBar = () => {
     }}>Contact Us</NavLink></li>
 
   </>
+  if(userLoading){
+    return  <Spinner aria-label="Default status example" />;
+  }
   return (
     <Navbar fluid rounded className='bg-[#D4F6C8] py-3 fixed z-10 w-full'>
       <Navbar.Brand href="/">
@@ -61,10 +76,11 @@ const NavBar = () => {
           >
             <Dropdown.Header>
               <span className="block text-sm">{user.displayName}</span>
+              <span className="block text-sm">{user?.userRole}</span>
               <span className="block truncate text-sm font-medium">{user.email}</span>
             </Dropdown.Header>
             <Dropdown.Divider />
-            <Dropdown.Item onClick={handleSignOut}>Sign out</Dropdown.Item>
+            <Dropdown.Item onClick={handleSignOut}>Log out</Dropdown.Item>
           </Dropdown>
           <Navbar.Toggle />
           </div>

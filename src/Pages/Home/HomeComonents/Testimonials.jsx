@@ -21,7 +21,7 @@ const Testimonials = () => {
             return res.data;
         }
     })
-    console.log(testimonials)
+    // console.log(testimonials)
     return (
         <div className='text-center'>
              <h1 className="text-3xl mt-20 border-[#FFE074] border-x-2 py-5 bg-[#D4F6C8] border-y-4 font-bold">Testimonials</h1>
