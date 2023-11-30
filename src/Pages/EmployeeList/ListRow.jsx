@@ -22,7 +22,7 @@ const ListRow = ({ savedUser }) => {
                 savedUser.salary}
             </Table.Cell>
             <Table.Cell>
-                <Button onClick={() => handlepay(savedUser)} color="info">Pay</Button>
+                <Button color="info">Pay</Button>
             </Table.Cell>
             <Table.Cell>
                 {
