@@ -13,6 +13,7 @@ import AdminRoute from "./AdminRoute";
 import Progress from "../Pages/Progress/Progress";
 import HrRoutes from './HrRoutes';
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import EmployeelList from './../Pages/EmployeeList/EmployeelList';
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/work-sheet",
         element: <WorkSheet></WorkSheet>,
+      },
+      {
+        path: "/dashboard/employee-list",
+        element: <EmployeelList></EmployeelList>,
       },
 
 

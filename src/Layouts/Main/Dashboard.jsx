@@ -99,6 +99,18 @@ const Dashboard = () => {
                 </ul>
                 <ul className="menu p-4">
                     <>
+                        <li><NavLink to='/dashboard/employee-list' style={({ isActive }) => {
+                            return {
+                                backgroundColor: isActive ? "#FFE074" : " ",
+                                padding: isActive ? "10px" : " ",
+                                borderRadius: isActive ? "5px" : ""
+
+                            }
+                        }}>Employee</NavLink></li>
+                    </>
+                </ul>
+                <ul className="menu p-4">
+                    <>
                         <li><NavLink to='/' style={({ isActive }) => {
                             return {
                                 backgroundColor: isActive ? "#FFE074" : " ",
