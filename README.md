@@ -1,4 +1,4 @@
-# DigitalSculp
+# DigitalSculp (Employee management site)
 # Live-Link: https://starlit-jelly-aa5348.netlify.app
 => Is an employee management website 
 
